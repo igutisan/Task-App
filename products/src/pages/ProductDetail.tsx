@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 import { getProductById } from '../data/productsServices';
 import { useCart } from '../context/CartContext';
 import Loading from '../components/Loading';
@@ -16,7 +16,6 @@ type Product = {
 
 const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
-    const navigate = useNavigate();
     const { addToCart } = useCart();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
