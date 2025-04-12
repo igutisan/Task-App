@@ -1,0 +1,70 @@
+@use 'sass:color';
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    z-index: 900;
+}
+
+.navbar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #1f2937;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #f3f4f6;
+        transform: translateX(-2px);
+    }
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #1f2937;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    .brand-icon {
+        font-size: 1.75rem;
+    }
+
+    .brand-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+// Ajustamos el padding-top de los contenedores principales
+.products-container,
+.product-detail-container,
+.cart-container {
+    padding-top: 5rem;
+} 

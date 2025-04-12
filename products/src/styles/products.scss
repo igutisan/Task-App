@@ -1,0 +1,265 @@
+@import './_variables';
+
+// Variables
+$primary-color: #2563eb;
+$secondary-color: #1e40af;
+$text-color: #1f2937;
+$light-gray: #f3f4f6;
+$white: #ffffff;
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin hover-transform {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// Estilos globales
+body {
+    background-color: $bg-dark;
+    color: $text-light;
+}
+
+// Loading styles
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: $bg-dark;
+}
+
+.loading-spinner {
+    text-align: center;
+    
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid $bg-light;
+        border-top: 4px solid $primary;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+    
+    p {
+        color: $text-light;
+        font-size: 1.1rem;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+// Hero section
+.hero-section {
+    background: linear-gradient(135deg, $bg-card, $bg-light);
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: $shadow-md;
+    
+    .hero-title {
+        color: $text-light;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: $shadow-sm;
+    }
+    
+    .hero-subtitle {
+        color: $text-muted;
+        font-size: 1.2rem;
+    }
+}
+
+// Products container
+.products-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+// Products grid
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// No products message
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    
+    p {
+        font-size: 1.2rem;
+        color: #1f2937;
+        font-weight: 500;
+    }
+}
+
+// Product card
+.product-card {
+    background: $bg-card;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-lg;
+    }
+    
+    .product-image-container {
+        position: relative;
+        height: 250px;
+        background: $bg-light;
+        overflow: hidden;
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: $overlay-dark;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            
+            .view-details-btn {
+                background: $bg-card;
+                color: $text-light;
+                padding: 0.75rem 1.5rem;
+                border-radius: 2rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+                border: 1px solid $border-color;
+
+                .eye-icon {
+                    font-size: 1.2rem;
+                }
+
+                &:hover {
+                    background: $bg-light;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+        
+        &:hover {
+            .product-overlay {
+                opacity: 1;
+            }
+            
+            .product-image {
+                transform: scale(1.1);
+            }
+        }
+    }
+    
+    .product-info {
+        padding: 1.5rem;
+        
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $text-light;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            .product-price {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: $primary;
+            }
+            
+            .add-to-cart-btn {
+                background: $primary;
+                color: $text-light;
+                padding: 0.5rem 1rem;
+                border-radius: 1.5rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    background: $primary-dark;
+                    transform: translateY(-2px);
+                }
+                
+                &.added {
+                    background: $success;
+                    animation: pulse 0.3s ease-in-out;
+                }
+
+                .cart-icon {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+} 
